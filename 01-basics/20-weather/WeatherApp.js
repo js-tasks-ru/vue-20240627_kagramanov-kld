@@ -7,13 +7,10 @@ export default defineComponent({
   setup() {
     const cards = getWeatherData()
     const icons = WeatherConditionIcons
-    const getTime = time => new Date(2024, 1, 1, time.substring(0, 2), time.substring(3, 5), 0, 0)
 
     function isNight({ current }) {
       const { dt, sunrise, sunset } = current
-      const now = getTime(dt)
-
-      return getTime(sunrise) > now && now < getTime(sunset)
+      return sunrise > dt && dt < sunset
     }
 
     return {
